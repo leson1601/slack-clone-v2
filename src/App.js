@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import { useStateValue } from './StateProvider';
 import db from './db/firebase';
+import ChatContainer from './components/ChatContainer';
 
 function App() {
   // const [state, dispatch] = useStateValue();
@@ -31,6 +32,7 @@ function App() {
       <Header />
       <div className='app__content'>
         <Sidebar />
+        <ChatContainer />
       </div>
     </div>
   );

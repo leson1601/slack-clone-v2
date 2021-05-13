@@ -1,0 +1,52 @@
+.main {
+  flex: 0.83;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  height: 64px;
+}
+
+.main-header__left {
+  margin-left: 20px;
+}
+
+.main-header__channel {
+  display: flex;
+  align-items: center;
+  padding-top: 15px;
+}
+
+.main-header__channel > h3 {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.main-header__channel > .MuiSvgIcon-root {
+  font-size: 18px;
+  fill: rgba(0, 0, 0, 0.5);
+  margin-left: 2px;
+  margin-top: 1px;
+}
+
+.main-header__left > h4 {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 4px;
+}
+
+.main-header__right {
+  margin-right: 20px;
+}
+
+.main-header__right {
+  display: flex;
+  align-items: center;
+}
+
+.main-header__right > .MuiSvgIcon-root {
+  font-size: 22px;
+  fill: rgba(0, 0, 0, 0.7);
+}
