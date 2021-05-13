@@ -1,0 +1,60 @@
+.header {
+  height: 38px;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  align-items: center;
+}
+
+.header__info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.header__icon {
+  color: var(--sidebar-text);
+}
+
+.header__search {
+  background-color: var(--primary-color);
+  width: 500px;
+  margin: 0 24px;
+}
+
+.header__search-input {
+  width: 100%;
+  background-color: var(--primary-color);
+  border: 1px solid #684a68;
+  border-radius: 5px;
+  padding: 2px 8px;
+  color: white;
+}
+
+.header__search-input:focus {
+  outline: none;
+}
+
+.header__user {
+  margin: 0 12px;
+  /* border-radius: 50%; */
+  position: relative;
+}
+
+.MuiSvgIcon-root.header__icon-account {
+  fill: white;
+  font-size: 2.5rem;
+}
+
+.MuiSvgIcon-root.header__icon-circle {
+  fill: green;
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 1px;
+  right: 0px;
+  background-color: black;
+  border-radius: 50%;
+  border: 2px solid black;
+}
