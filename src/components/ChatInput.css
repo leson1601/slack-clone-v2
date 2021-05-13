@@ -1,12 +1,22 @@
-.chat-input {
-  display: flex;
+.chat-input__container {
+  background-color: white;
   position: absolute;
   bottom: 20px;
-  left: 20px;
+  left: 18.2%;
   right: 20px;
-  height: 40px;
-  border: 1px solid black;
+  height: 80px;
+}
+
+.chat-input {
+  display: flex;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 3px;
+  flex-direction: column;
+}
+
+.chat-input.focused {
+  border: 1px solid black;
 }
 
 .chat-input > input {
@@ -23,4 +33,6 @@
 
 .chat-input > button {
   padding: 0 20px;
+  flex: 1;
+  align-self: flex-end;
 }

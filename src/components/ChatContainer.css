@@ -55,6 +55,8 @@
 }
 
 .main-body {
-  position: relative;
+  /* position: relative; */
   flex: 1;
+  overflow-y: scroll;
+  max-height: 600px;
 }

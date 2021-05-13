@@ -9,6 +9,8 @@ import firebase from 'firebase/app';
 function ChatInput() {
   const [message, setMessage] = useState('');
   const [{ activeChannel }] = useStateValue();
+  const [isFocus, setIsFocus] = useState(false);
+
   const sendMessage = (event) => {
     event.preventDefault();
     if (message) {
@@ -18,21 +20,30 @@ function ChatInput() {
         message: message,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
+      setMessage('');
     }
   };
-  return (
-    <form className='chat-input' onSubmit={(event) => sendMessage(event)}>
-      <input
-        type='text'
-        placeholder='Send a message'
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
 
-      <Button color='primary' type='submit'>
-        <SendIcon />
-      </Button>
-    </form>
+  return (
+    <div className='chat-input__container'>
+      <form
+        className={`chat-input ${isFocus ? 'focused' : ''}`}
+        onSubmit={(event) => sendMessage(event)}
+      >
+        <input
+          type='text'
+          placeholder='Send a message'
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+        />
+
+        <Button color='primary' type='submit' disabled={!isFocus}>
+          <SendIcon />
+        </Button>
+      </form>
+    </div>
   );
 }
 
