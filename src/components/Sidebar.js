@@ -7,8 +7,8 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import SidebarLine from './SidebarLine';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import AddBoxIcon from '@material-ui/icons/AddBox';
 import { useStateValue } from '../StateProvider';
+import ChannelModal from './ChannelModal';
 
 function Sidebar() {
   const [{ channels }] = useStateValue();
@@ -35,7 +35,7 @@ function Sidebar() {
             subChannel={true}
           />
         ))}
-        <SidebarLine Icon={AddBoxIcon} title='Add Channel' subChannel={true} />
+        <ChannelModal />
       </div>
     </div>
   );

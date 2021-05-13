@@ -9,6 +9,7 @@ const reducer = (state, action) => {
       return { ...state, channels: action.payload };
     case 'SET_ACTIVE_CHANNEL':
       return { ...state, activeChannel: action.payload };
+
     default:
       return state;
   }
