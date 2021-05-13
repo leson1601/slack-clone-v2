@@ -1,5 +1,8 @@
 .main {
   flex: 0.83;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .main-header {
@@ -49,4 +52,9 @@
 .main-header__right > .MuiSvgIcon-root {
   font-size: 22px;
   fill: rgba(0, 0, 0, 0.7);
+}
+
+.main-body {
+  position: relative;
+  flex: 1;
 }

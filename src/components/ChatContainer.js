@@ -5,6 +5,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import Message from './Message';
 import db from '../db/firebase';
 import { useStateValue } from '../StateProvider';
+import ChatInput from './ChatInput';
 
 function ChatContainer() {
   const [{ activeChannel }] = useStateValue();
@@ -46,7 +47,7 @@ function ChatContainer() {
           <Message message={message} timestamp={timestamp} user={user} />
         ))}
 
-        <p></p>
+        <ChatInput />
       </div>
     </div>
   );
