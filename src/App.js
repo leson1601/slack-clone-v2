@@ -14,15 +14,17 @@ function App() {
 
   useEffect(() => {
     // set channels
-    db.collection('rooms').onSnapshot((snapshot) => {
-      dispatch({
-        type: 'SET_CHANNELS',
-        payload: snapshot.docs.map((doc) => ({
-          id: doc.id,
-          name: doc.data().name,
-        })),
+    db.collection('rooms')
+      .orderBy('name')
+      .onSnapshot((snapshot) => {
+        dispatch({
+          type: 'SET_CHANNELS',
+          payload: snapshot.docs.map((doc) => ({
+            id: doc.id,
+            name: doc.data().name,
+          })),
+        });
       });
-    });
   }, [dispatch]);
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import Modal from '@material-ui/core/Modal';
 import { Button, TextField } from '@material-ui/core';
 import db from '../db/firebase';
+import { useStateValue } from '../StateProvider';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -36,21 +37,23 @@ export default function ChannelModal() {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
+  const [{ activeChannel }, dispatch] = useStateValue();
 
   const [channelName, setChannelName] = useState('');
 
   const addChannel = (name) => {
     db.collection('rooms')
       .add({ name: name })
-      .then(() => {
-        console.log('Document successfully written!');
+      .then(function (docRef) {
+        console.log('Document written with ID: ', docRef.id);
+        dispatch({ type: 'SET_ACTIVE_CHANNEL', payload: docRef.id });
       })
       .catch((error) => {
         console.error('Error writing document: ', error);
       });
+    setChannelName('');
     handleClose();
   };
-
   const handleOpen = () => {
     setOpen(true);
   };
@@ -81,7 +84,7 @@ export default function ChannelModal() {
           onChange={(e) => setChannelName(e.target.value)}
         />
         <Button
-          onClick={() => addChannel(channelName)}
+          onClick={(event) => addChannel(channelName)}
           variant='contained'
           color='primary'
         >
