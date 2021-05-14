@@ -22,7 +22,7 @@ function ChatInput() {
       setMessage('');
     }
   };
-  console.log(activeChannel);
+
   return (
     <div className='chat-input__container'>
       <form
@@ -36,9 +36,14 @@ function ChatInput() {
           onChange={(e) => setMessage(e.target.value)}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
+          disabled={!activeChannel}
         />
 
-        <Button color='primary' type='submit' disabled={!isFocus}>
+        <Button
+          color='primary'
+          type='submit'
+          disabled={!isFocus || !activeChannel}
+        >
           <SendIcon />
         </Button>
       </form>
