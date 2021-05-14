@@ -3,13 +3,9 @@ import './Header.css';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import Brightness1RoundedIcon from '@material-ui/icons/Brightness1Rounded';
-import GoogleLogin from './GoogleLogin';
-import { useStateValue } from '../StateProvider';
 import SimpleDialogDemo from './UserDetail';
 
 function Header() {
-  const [{ user }] = useStateValue();
-
   return (
     <div className='header'>
       <div className='header__info'>
@@ -24,14 +20,8 @@ function Header() {
         <HelpOutlineIcon className='header__icon' />
       </div>
       <div className='header__user'>
-        {user ? (
-          <>
-            <Brightness1RoundedIcon className='header__icon-circle' />
-            <SimpleDialogDemo />
-          </>
-        ) : (
-          <GoogleLogin />
-        )}
+        <Brightness1RoundedIcon className='header__icon-circle' />
+        <SimpleDialogDemo />
       </div>
     </div>
   );

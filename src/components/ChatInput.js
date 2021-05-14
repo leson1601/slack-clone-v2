@@ -8,13 +8,12 @@ import firebase from 'firebase/app';
 
 function ChatInput() {
   const [message, setMessage] = useState('');
-  const [{ activeChannel, user }] = useStateValue();
+  const [{ activeChannel }] = useStateValue();
   const [isFocus, setIsFocus] = useState(false);
 
   const sendMessage = (event) => {
     event.preventDefault();
     if (message) {
-      console.log(message);
       db.collection('rooms').doc(activeChannel).collection('messages').add({
         user: 'Son Le',
         message: message,

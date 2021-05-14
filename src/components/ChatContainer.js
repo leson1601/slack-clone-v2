@@ -11,6 +11,7 @@ function ChatContainer() {
   const [{ activeChannel }] = useStateValue();
   const [roomMessages, setRoomMessages] = useState([]);
   const [channel, setChannel] = useState('');
+
   useEffect(() => {
     if (activeChannel) {
       db.collection('rooms')
@@ -18,16 +19,20 @@ function ChatContainer() {
         .onSnapshot((doc) => {
           setChannel(doc.data().name);
         });
+
       db.collection('rooms')
         .doc(activeChannel)
         .collection('messages')
         .orderBy('timestamp', 'asc')
         .onSnapshot((snapshot) =>
-          setRoomMessages(snapshot.docs.map((doc) => doc.data()))
+          setRoomMessages(
+            snapshot.docs.map((doc) => {
+              return { ...doc.data(), id: doc.id };
+            })
+          )
         );
     }
   }, [activeChannel]);
-
   return (
     <div className='main'>
       <div className='main-header'>
