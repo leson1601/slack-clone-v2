@@ -8,7 +8,7 @@ import { useStateValue } from '../StateProvider';
 import ChatInput from './ChatInput';
 
 function ChatContainer() {
-  const [{ activeChannel }] = useStateValue();
+  const [{ activeChannel, users }] = useStateValue();
   const [roomMessages, setRoomMessages] = useState([]);
   const [channel, setChannel] = useState('');
 
@@ -60,7 +60,11 @@ function ChatContainer() {
       <div className='main-body'>
         <div className='messages__container'>
           {roomMessages.map(({ message, timestamp, user }) => (
-            <Message message={message} timestamp={timestamp} user={user} />
+            <Message
+              message={message}
+              timestamp={timestamp}
+              user={users.find((item) => item.email === user)}
+            />
           ))}
           <div ref={messagesEndRef} />
         </div>

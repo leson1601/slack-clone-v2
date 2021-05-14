@@ -15,7 +15,7 @@ function ChatInput() {
     event.preventDefault();
     if (message) {
       db.collection('rooms').doc(activeChannel).collection('messages').add({
-        user: user.username,
+        user: user.email,
         message: message,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });

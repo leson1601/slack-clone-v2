@@ -37,7 +37,7 @@ export default function ChannelModal() {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
-  const [{ activeChannel }, dispatch] = useStateValue();
+  const [, dispatch] = useStateValue();
 
   const [channelName, setChannelName] = useState('');
 
@@ -84,7 +84,7 @@ export default function ChannelModal() {
           onChange={(e) => setChannelName(e.target.value)}
         />
         <Button
-          onClick={(event) => addChannel(channelName)}
+          onClick={() => addChannel(channelName)}
           variant='contained'
           color='primary'
         >

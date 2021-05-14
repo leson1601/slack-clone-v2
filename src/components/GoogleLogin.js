@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { useStateValue } from '../StateProvider';
@@ -7,7 +7,7 @@ import './GoogleLogin.css';
 import db from '../db/firebase';
 
 function GoogleLogin() {
-  const [{ users }, dispatch] = useStateValue();
+  const [{ users }] = useStateValue();
   const login = () => {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase
