@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Sidebar.css';
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
 import InsertCommentOutlinedIcon from '@material-ui/icons/InsertCommentOutlined';
@@ -9,9 +9,31 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useStateValue } from '../StateProvider';
 import ChannelModal from './ChannelModal';
+import db from '../db/firebase';
 
 function Sidebar() {
-  const [{ channels }] = useStateValue();
+  const [{ channels }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    // set channels
+    db.collection('rooms')
+      .orderBy('name')
+      .onSnapshot((snapshot) => {
+        dispatch({
+          type: 'SET_CHANNELS',
+          payload: snapshot.docs.map((doc) => ({
+            id: doc.id,
+            name: doc.data().name,
+          })),
+        });
+      });
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (channels.length > 0) {
+      dispatch({ type: 'SET_ACTIVE_CHANNEL', payload: channels[0].id });
+    }
+  }, [channels, dispatch]);
 
   return (
     <div className='sidebar'>

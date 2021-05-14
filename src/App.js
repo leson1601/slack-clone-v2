@@ -9,24 +9,7 @@ import GoogleLogin from './components/GoogleLogin';
 import firebase from 'firebase/app';
 
 function App() {
-  // const [state, dispatch] = useStateValue();
   const [{ user, users }, dispatch] = useStateValue();
-
-  useEffect(() => {
-    // set channels
-    db.collection('rooms')
-      .orderBy('name')
-      .onSnapshot((snapshot) => {
-        dispatch({
-          type: 'SET_CHANNELS',
-          payload: snapshot.docs.map((doc) => ({
-            id: doc.id,
-            name: doc.data().name,
-          })),
-        });
-      });
-  }, [dispatch]);
-
   useEffect(() => {
     // set users
     db.collection('users').onSnapshot((snapshot) => {

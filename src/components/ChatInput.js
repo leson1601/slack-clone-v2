@@ -22,7 +22,7 @@ function ChatInput() {
       setMessage('');
     }
   };
-
+  console.log(activeChannel);
   return (
     <div className='chat-input__container'>
       <form
