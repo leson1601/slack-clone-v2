@@ -5,10 +5,11 @@ import Sidebar from './components/Sidebar';
 import { useStateValue } from './StateProvider';
 import db from './db/firebase';
 import ChatContainer from './components/ChatContainer';
+import GoogleLogin from './components/GoogleLogin';
 
 function App() {
   // const [state, dispatch] = useStateValue();
-  const [{ channels }, dispatch] = useStateValue();
+  const [{ channels, user }, dispatch] = useStateValue();
   useEffect(() => {
     db.collection('rooms').onSnapshot((snapshot) => {
       dispatch({
@@ -29,11 +30,17 @@ function App() {
 
   return (
     <div className='app'>
-      <Header />
-      <div className='app__content'>
-        <Sidebar />
-        <ChatContainer />
-      </div>
+      {!user ? (
+        <GoogleLogin />
+      ) : (
+        <>
+          <Header />
+          <div className='app__content'>
+            <Sidebar />
+            <ChatContainer />
+          </div>
+        </>
+      )}
     </div>
   );
 }

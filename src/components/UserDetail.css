@@ -1,0 +1,20 @@
+.user-detail {
+  min-width: 300px;
+}
+
+.user-detail__header {
+  display: flex;
+}
+
+.user-detail__body {
+  margin-left: 20px;
+}
+
+.user-detail__username {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.user-detail__email {
+  margin-top: 2px;
+}

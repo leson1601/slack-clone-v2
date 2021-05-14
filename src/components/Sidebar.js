@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Sidebar.css';
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
 import InsertCommentOutlinedIcon from '@material-ui/icons/InsertCommentOutlined';

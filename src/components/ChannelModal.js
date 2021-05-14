@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import Modal from '@material-ui/core/Modal';
 import { Button, TextField } from '@material-ui/core';
-import { useStateValue } from '../StateProvider';
 import db from '../db/firebase';
 
 function rand() {

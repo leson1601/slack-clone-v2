@@ -8,7 +8,7 @@ import firebase from 'firebase/app';
 
 function ChatInput() {
   const [message, setMessage] = useState('');
-  const [{ activeChannel }] = useStateValue();
+  const [{ activeChannel, user }] = useStateValue();
   const [isFocus, setIsFocus] = useState(false);
 
   const sendMessage = (event) => {
