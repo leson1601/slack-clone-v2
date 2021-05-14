@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './ChatContainer.css';
 import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
@@ -11,6 +11,15 @@ function ChatContainer() {
   const [{ activeChannel }] = useStateValue();
   const [roomMessages, setRoomMessages] = useState([]);
   const [channel, setChannel] = useState('');
+
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [roomMessages]);
 
   useEffect(() => {
     if (activeChannel) {
@@ -33,6 +42,7 @@ function ChatContainer() {
         );
     }
   }, [activeChannel]);
+
   return (
     <div className='main'>
       <div className='main-header'>
@@ -48,9 +58,12 @@ function ChatContainer() {
         </div>
       </div>
       <div className='main-body'>
-        {roomMessages.map(({ message, timestamp, user }) => (
-          <Message message={message} timestamp={timestamp} user={user} />
-        ))}
+        <div className='messages__container'>
+          {roomMessages.map(({ message, timestamp, user }) => (
+            <Message message={message} timestamp={timestamp} user={user} />
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
 
         <ChatInput />
       </div>

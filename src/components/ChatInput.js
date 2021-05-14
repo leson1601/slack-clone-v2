@@ -8,14 +8,14 @@ import firebase from 'firebase/app';
 
 function ChatInput() {
   const [message, setMessage] = useState('');
-  const [{ activeChannel }] = useStateValue();
+  const [{ activeChannel, user }] = useStateValue();
   const [isFocus, setIsFocus] = useState(false);
 
   const sendMessage = (event) => {
     event.preventDefault();
     if (message) {
       db.collection('rooms').doc(activeChannel).collection('messages').add({
-        user: 'Son Le',
+        user: user.username,
         message: message,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });

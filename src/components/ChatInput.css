@@ -1,10 +1,7 @@
 .chat-input__container {
   background-color: white;
-  position: absolute;
-  bottom: 20px;
-  left: 18.2%;
-  right: 20px;
   height: 80px;
+  margin: 0 20px;
 }
 
 .chat-input {

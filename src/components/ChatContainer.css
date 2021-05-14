@@ -57,6 +57,13 @@
 .main-body {
   /* position: relative; */
   flex: 1;
-  overflow-y: scroll;
+
   max-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages__container {
+  flex: 1;
+  overflow-y: scroll;
 }
