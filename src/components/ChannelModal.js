@@ -42,17 +42,19 @@ export default function ChannelModal() {
   const [channelName, setChannelName] = useState('');
 
   const addChannel = (name) => {
-    db.collection('rooms')
-      .add({ name: name })
-      .then(function (docRef) {
-        console.log('Document written with ID: ', docRef.id);
-        dispatch({ type: 'SET_ACTIVE_CHANNEL', payload: docRef.id });
-      })
-      .catch((error) => {
-        console.error('Error writing document: ', error);
-      });
-    setChannelName('');
-    handleClose();
+    if (name.length > 0) {
+      db.collection('rooms')
+        .add({ name: name })
+        .then(function (docRef) {
+          console.log('Document written with ID: ', docRef.id);
+          dispatch({ type: 'SET_ACTIVE_CHANNEL', payload: docRef.id });
+        })
+        .catch((error) => {
+          console.error('Error writing document: ', error);
+        });
+      setChannelName('');
+      handleClose();
+    }
   };
   const handleOpen = () => {
     setOpen(true);

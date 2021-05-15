@@ -61,11 +61,13 @@ function ChatContainer() {
       </div>
       <div className='main-body'>
         <div className='messages__container'>
-          {roomMessages.map(({ message, timestamp, user }) => (
+          {roomMessages.map(({ message, timestamp, user, id }) => (
             <Message
               message={message}
               timestamp={timestamp}
-              user={users.find((item) => item.email === user)}
+              author={users.find((item) => item.email === user)}
+              id={id}
+              channelId={roomId}
             />
           ))}
           <div ref={messagesEndRef} />
