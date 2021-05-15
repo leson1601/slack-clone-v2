@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Sidebar.css';
 import ExpandMoreRoundedIcon from '@material-ui/icons/ExpandMoreRounded';
 import InsertCommentOutlinedIcon from '@material-ui/icons/InsertCommentOutlined';
@@ -7,33 +7,25 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import SidebarLine from './SidebarLine';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { useStateValue } from '../StateProvider';
 import ChannelModal from './ChannelModal';
 import db from '../db/firebase';
+import { Link } from 'react-router-dom';
 
 function Sidebar() {
-  const [{ channels }, dispatch] = useStateValue();
-
+  const [roomsDetail, setRoomsDetail] = useState([]);
   useEffect(() => {
     // set channels
     db.collection('rooms')
       .orderBy('name')
       .onSnapshot((snapshot) => {
-        dispatch({
-          type: 'SET_CHANNELS',
-          payload: snapshot.docs.map((doc) => ({
+        setRoomsDetail(
+          snapshot.docs.map((doc) => ({
             id: doc.id,
             name: doc.data().name,
-          })),
-        });
+          }))
+        );
       });
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (channels.length > 0) {
-      dispatch({ type: 'SET_ACTIVE_CHANNEL', payload: channels[0].id });
-    }
-  }, [channels, dispatch]);
+  }, []);
 
   return (
     <div className='sidebar'>
@@ -49,13 +41,15 @@ function Sidebar() {
         <br />
         <SidebarLine Icon={ExpandMoreIcon} title='Channels' />
         <br />
-        {channels.map((channel) => (
-          <SidebarLine
-            title={channel.name}
-            key={channel.id}
-            id={channel.id}
-            subChannel={true}
-          />
+        {roomsDetail.map((channel) => (
+          <Link to={`/${channel.id}`}>
+            <SidebarLine
+              title={channel.name}
+              key={channel.id}
+              id={channel.id}
+              subChannel={true}
+            />
+          </Link>
         ))}
         <ChannelModal />
       </div>

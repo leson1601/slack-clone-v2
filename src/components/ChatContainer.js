@@ -6,11 +6,13 @@ import Message from './Message';
 import db from '../db/firebase';
 import { useStateValue } from '../StateProvider';
 import ChatInput from './ChatInput';
+import { useParams } from 'react-router';
 
 function ChatContainer() {
-  const [{ activeChannel, users }] = useStateValue();
+  const [{ users }] = useStateValue();
   const [roomMessages, setRoomMessages] = useState([]);
   const [channel, setChannel] = useState('');
+  let { roomId } = useParams();
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
@@ -22,15 +24,15 @@ function ChatContainer() {
   }, [roomMessages]);
 
   useEffect(() => {
-    if (activeChannel) {
+    if (roomId) {
       db.collection('rooms')
-        .doc(activeChannel)
+        .doc(roomId)
         .onSnapshot((doc) => {
           setChannel(doc.data().name);
         });
 
       db.collection('rooms')
-        .doc(activeChannel)
+        .doc(roomId)
         .collection('messages')
         .orderBy('timestamp', 'asc')
         .onSnapshot((snapshot) =>
@@ -41,7 +43,7 @@ function ChatContainer() {
           )
         );
     }
-  }, [activeChannel]);
+  }, [roomId]);
 
   return (
     <div className='main'>

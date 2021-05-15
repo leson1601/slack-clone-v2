@@ -1,20 +1,12 @@
 import React from 'react';
-import { useStateValue } from '../StateProvider';
 
 function SidebarLine({ Icon, title, id, subChannel }) {
-  const [{ activeChannel }, dispatch] = useStateValue();
-  const active = activeChannel && id === activeChannel;
-  const className = `sidebar-line ${subChannel && 'sidebar-line--sub'} ${
-    active && 'active'
-  }`;
+  const className = `sidebar-line ${id ? 'sidebar-line--sub' : ''}
+    
+   `;
 
   return (
-    <div
-      className={className}
-      onClick={() => {
-        dispatch({ type: 'SET_ACTIVE_CHANNEL', payload: id });
-      }}
-    >
+    <div className={className}>
       {Icon ? (
         <Icon className='sidebar-line__icon' />
       ) : (

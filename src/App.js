@@ -7,6 +7,7 @@ import db from './db/firebase';
 import ChatContainer from './components/ChatContainer';
 import GoogleLogin from './components/GoogleLogin';
 import firebase from 'firebase/app';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function App() {
   const [{ user, users }, dispatch] = useStateValue();
@@ -43,19 +44,25 @@ function App() {
   }, [dispatch, users]);
 
   return (
-    <div className='app'>
-      {!user ? (
-        <GoogleLogin />
-      ) : (
-        <>
-          <Header />
-          <div className='app__content'>
-            <Sidebar />
-            <ChatContainer />
+    <Router>
+      <div className='app'>
+        {!user ? (
+          <GoogleLogin />
+        ) : (
+          <div>
+            <Header />
+            <Switch>
+              <div className='app__content'>
+                <Sidebar />
+                <Route path='/:roomId'>
+                  <ChatContainer />
+                </Route>
+              </div>
+            </Switch>
           </div>
-        </>
-      )}
-    </div>
+        )}
+      </div>
+    </Router>
   );
 }
 

@@ -23,6 +23,10 @@
   transform: translateY(10%);
 }
 
+.sidebar__body {
+  padding: 20px;
+}
+
 .sidebar-line {
   display: flex;
   color: rgba(255, 255, 255, 0.6);
@@ -41,10 +45,6 @@
 .sidebar-line.active {
   background-color: #1164a3;
   color: white;
-}
-
-.sidebar-line:first-child {
-  margin-top: 20px;
 }
 
 .sidebar-line--sub {

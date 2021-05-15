@@ -5,16 +5,18 @@ import SendIcon from '@material-ui/icons/Send';
 import db from '../db/firebase';
 import { useStateValue } from '../StateProvider';
 import firebase from 'firebase/app';
+import { useParams } from 'react-router';
 
 function ChatInput() {
   const [message, setMessage] = useState('');
-  const [{ activeChannel, user }] = useStateValue();
   const [isFocus, setIsFocus] = useState(false);
+  const [{ user }] = useStateValue();
+  const { roomId } = useParams();
 
   const sendMessage = (event) => {
     event.preventDefault();
     if (message) {
-      db.collection('rooms').doc(activeChannel).collection('messages').add({
+      db.collection('rooms').doc(roomId).collection('messages').add({
         user: user.email,
         message: message,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -36,14 +38,9 @@ function ChatInput() {
           onChange={(e) => setMessage(e.target.value)}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          disabled={!activeChannel}
         />
 
-        <Button
-          color='primary'
-          type='submit'
-          disabled={!isFocus || !activeChannel}
-        >
+        <Button color='primary' type='submit'>
           <SendIcon />
         </Button>
       </form>
