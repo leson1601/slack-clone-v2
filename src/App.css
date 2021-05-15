@@ -1,11 +1,13 @@
 .app {
-  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 .app__content {
   display: flex;
-  /* height: 100%; */
   flex: 1;
 }

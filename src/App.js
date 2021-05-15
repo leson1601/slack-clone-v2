@@ -7,7 +7,7 @@ import db from './db/firebase';
 import ChatContainer from './components/ChatContainer';
 import GoogleLogin from './components/GoogleLogin';
 import firebase from 'firebase/app';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   const [{ user, users }, dispatch] = useStateValue();
@@ -49,7 +49,7 @@ function App() {
         {!user ? (
           <GoogleLogin />
         ) : (
-          <div>
+          <div className='container'>
             <Header />
             <Switch>
               <div className='app__content'>
