@@ -10,7 +10,7 @@ import firebase from 'firebase/app';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
-  const [{ user, users }, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
     // set users

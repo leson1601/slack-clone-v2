@@ -43,9 +43,8 @@
   position: relative;
 }
 
-.MuiSvgIcon-root.header__icon-account {
-  fill: white;
-  font-size: 2.5rem;
+.MuiAvatar-root.MuiAvatar-circle {
+  cursor: pointer;
 }
 
 .MuiSvgIcon-root.header__icon-circle {
