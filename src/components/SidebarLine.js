@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SidebarLine({ Icon, title, id, subChannel }) {
+function SidebarLine({ Icon, title, id }) {
   const className = `sidebar-line ${id ? 'sidebar-line--sub' : ''}
     
    `;

@@ -47,7 +47,6 @@ function Sidebar() {
               title={channel.name}
               key={channel.id}
               id={channel.id}
-              subChannel={true}
             />
           </Link>
         ))}
