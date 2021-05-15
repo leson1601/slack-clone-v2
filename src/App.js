@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   const [{ user, users }, dispatch] = useStateValue();
+
   useEffect(() => {
     // set users
     db.collection('users').onSnapshot((snapshot) => {
@@ -24,7 +25,7 @@ function App() {
         })),
       });
     });
-  }, [dispatch, users]);
+  }, [dispatch]);
 
   useEffect(() => {
     // set logged in user
@@ -32,7 +33,11 @@ function App() {
       if (user) {
         dispatch({
           type: 'SET_USER',
-          payload: users.find((item) => item.email === user.email),
+          payload: {
+            username: user.displayName,
+            email: user.email,
+            photo: user.photoURL,
+          },
         });
       } else {
         dispatch({
@@ -41,7 +46,7 @@ function App() {
         });
       }
     });
-  }, [dispatch, users]);
+  }, [dispatch]);
 
   return (
     <Router>

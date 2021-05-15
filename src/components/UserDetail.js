@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 
@@ -38,7 +38,9 @@ function SimpleDialog(props) {
   const handleClose = () => {
     onClose();
   };
-
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
     <Dialog
       onClose={handleClose}
